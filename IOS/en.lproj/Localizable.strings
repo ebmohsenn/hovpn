@@ -1,0 +1,8 @@
+/* 
+  Localizable.strings
+  WitVPN
+
+  Created by thongvm on 18/01/2022.
+  
+*/
+"error_email_format" = "Invalid Email.";
