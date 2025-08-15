@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="16px" viewBox="0 0 12 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icon Copy</title>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Symbol" transform="translate(-22.000000, -12.000000)" fill="#FF2E93">
+            <g id="Icon-Copy" transform="translate(16.000000, 8.000000)">
+                <path d="M12,4.49999996 C9.10049998,4.49999996 6.74999997,6.85049997 6.74999997,9.74999999 C6.74999997,13.5 12,19.5 12,19.5 C12,19.5 17.25,13.5 17.25,9.74999999 C17.25,6.85049997 14.8995,4.49999996 12,4.49999996 Z M12,11.625 C10.96425,11.625 10.125,10.78575 10.125,9.74999999 C10.125,8.71424998 10.96425,7.87499998 12,7.87499998 C13.03575,7.87499998 13.875,8.71424998 13.875,9.74999999 C13.875,10.78575 13.03575,11.625 12,11.625 Z" id="location"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="WorkSans-Bold.ttf">
+            <string>WorkSans-Bold</string>
+        </array>
+        <array key="WorkSans-Regular.ttf">
+            <string>WorkSans-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="uUl-V8-YSk" customClass="ServerCell" customModule="WitVPN" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ttz-F8-MLl">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j02-iw-dYK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INB-kk-A1t">
+                                <rect key="frame" x="56" y="13" width="40.5" height="17"/>
+                                <fontDescription key="fontDescription" name="WorkSans-Bold" family="Work Sans" pointSize="14"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7tc-Ot-p7u" customClass="SVGView" customModule="Macaw">
+                                <rect key="frame" x="16" y="20" width="24" height="24"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="24" id="MAN-nL-qQs"/>
+                                    <constraint firstAttribute="height" constant="24" id="OXU-O1-Qyn"/>
+                                </constraints>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_premium" highlightedImage="ic_tick" translatesAutoresizingMaskIntoConstraints="NO" id="au5-0T-sH6">
+                                <rect key="frame" x="366" y="12" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="6Im-eL-QuW"/>
+                                    <constraint firstAttribute="height" constant="40" id="IKH-NL-CFh"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iO9-dZ-AGY">
+                                <rect key="frame" x="56" y="34" width="305" height="11"/>
+                                <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="9"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="letterSpace">
+                                        <real key="value" value="1.3999999999999999"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" name="cl_selected_item"/>
+                        <constraints>
+                            <constraint firstItem="7tc-Ot-p7u" firstAttribute="centerY" secondItem="INB-kk-A1t" secondAttribute="bottom" constant="2" id="9Cq-fK-WxI"/>
+                            <constraint firstItem="iO9-dZ-AGY" firstAttribute="top" secondItem="7tc-Ot-p7u" secondAttribute="centerY" constant="2" id="Mhu-DX-Oyf"/>
+                            <constraint firstItem="au5-0T-sH6" firstAttribute="leading" secondItem="iO9-dZ-AGY" secondAttribute="trailing" constant="5" id="jZ4-NX-dNi"/>
+                            <constraint firstItem="7tc-Ot-p7u" firstAttribute="leading" secondItem="j02-iw-dYK" secondAttribute="leading" constant="16" id="kyg-z8-rfa"/>
+                            <constraint firstAttribute="trailing" secondItem="au5-0T-sH6" secondAttribute="trailing" constant="8" id="rxw-LY-dsf"/>
+                            <constraint firstItem="INB-kk-A1t" firstAttribute="leading" secondItem="7tc-Ot-p7u" secondAttribute="trailing" constant="16" id="sqv-Ji-zgW"/>
+                            <constraint firstItem="iO9-dZ-AGY" firstAttribute="leading" secondItem="INB-kk-A1t" secondAttribute="leading" id="wlw-hi-YcN"/>
+                            <constraint firstItem="au5-0T-sH6" firstAttribute="centerY" secondItem="j02-iw-dYK" secondAttribute="centerY" id="xnJ-kV-v9r"/>
+                            <constraint firstItem="7tc-Ot-p7u" firstAttribute="centerY" secondItem="j02-iw-dYK" secondAttribute="centerY" id="yC7-75-Cz1"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="j02-iw-dYK" firstAttribute="top" secondItem="ttz-F8-MLl" secondAttribute="top" id="JO2-TS-WrA"/>
+                    <constraint firstAttribute="trailing" secondItem="j02-iw-dYK" secondAttribute="trailing" id="XC6-XK-yhU"/>
+                    <constraint firstItem="j02-iw-dYK" firstAttribute="leading" secondItem="ttz-F8-MLl" secondAttribute="leading" id="aSm-Y0-0fA"/>
+                    <constraint firstAttribute="bottom" secondItem="j02-iw-dYK" secondAttribute="bottom" id="oov-Al-B5n"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <size key="customSize" width="419" height="84"/>
+            <connections>
+                <outlet property="bg" destination="j02-iw-dYK" id="guf-7T-giZ"/>
+                <outlet property="flag" destination="7tc-Ot-p7u" id="u6W-p0-4up"/>
+                <outlet property="lbCountry" destination="INB-kk-A1t" id="hN2-iw-AO1"/>
+                <outlet property="lbState" destination="iO9-dZ-AGY" id="tyB-fO-o5h"/>
+                <outlet property="leftIcon" destination="au5-0T-sH6" id="HQB-ly-gQ7"/>
+            </connections>
+            <point key="canvasLocation" x="95.652173913043484" y="87.723214285714278"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="ic_premium" width="16" height="12"/>
+        <image name="ic_tick" width="16" height="13"/>
+        <namedColor name="cl_selected_item">
+            <color red="0.44299998879432678" green="0.31000000238418579" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
