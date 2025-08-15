@@ -4,7 +4,7 @@ const admin = require('firebase-admin');
 var serviceAccount = require('./firebase-admin.sdk.json');
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: ""
+  databaseURL: "https://hovp-9cf38-default-rtdb.firebaseio.com"
 });
 
 exports.removeUser = functions.https.onRequest((request, response) => {
