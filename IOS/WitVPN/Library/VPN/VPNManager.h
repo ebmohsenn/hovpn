@@ -23,6 +23,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) loadProviderManager:(void (^)(void))finishBlock;
 
 - (void) openVPNconfigure:(NSString*)serverAddress data:(NSData*)data;
+
+/// Configure and start OpenVPN with optional credentials for auth-user-pass and encrypted private key
+- (void) openVPNconfigure:(NSString*)serverAddress
+					 data:(NSData*)data
+				 username:(NSString* _Nullable)username
+				 password:(NSString* _Nullable)password
+			 keyPassphrase:(NSString* _Nullable)keyPassphrase;
 - (void) uninstallVPNConfigurationFromManagers;
 - (void) startConnection:(void(^)(void))completion;
 - (void) stopConnection:(void(^)(void))completion;

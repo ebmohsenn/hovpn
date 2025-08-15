@@ -79,6 +79,14 @@
 
 #pragma mark - OPENVPN
 -(void)openVPNconfigure:(NSString *)serverAddress data:(NSData *)data {
+    [self openVPNconfigure:serverAddress data:data username:nil password:nil keyPassphrase:nil];
+}
+
+-(void)openVPNconfigure:(NSString *)serverAddress
+                   data:(NSData *)data
+               username:(NSString * _Nullable)username
+               password:(NSString * _Nullable)password
+           keyPassphrase:(NSString * _Nullable)keyPassphrase {
     if (self.is_verify == false) {
         [self raiseExeption];
     }
@@ -87,7 +95,11 @@
             NETunnelProviderProtocol *tunnelProtocol = [NETunnelProviderProtocol new];
             tunnelProtocol.serverAddress = serverAddress;
             tunnelProtocol.providerBundleIdentifier = [NSString stringWithFormat:@"%@.PacketTunnelProvider", [[NSBundle mainBundle] bundleIdentifier]];
-            tunnelProtocol.providerConfiguration = @{ @"ovpn": data};
+            NSMutableDictionary *providerConfig = [@{ @"ovpn": data } mutableCopy];
+            if (username) { providerConfig[@"username"] = username; }
+            if (password) { providerConfig[@"password"] = password; }
+            if (keyPassphrase) { providerConfig[@"pkiPassphrase"] = keyPassphrase; }
+            tunnelProtocol.providerConfiguration = providerConfig;
             tunnelProtocol.disconnectOnSleep = false;
             self.providerManager.protocolConfiguration = tunnelProtocol;
             self.providerManager.localizedDescription = @"Wit VPN";

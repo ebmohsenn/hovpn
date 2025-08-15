@@ -356,10 +356,62 @@ class HomeViewController: BaseViewController {
               let ovpn = self.currentServer?.ovpn,
               let decodedData = Data(base64Encoded: ovpn)
         else {return}
-        WitVPNVPNAnalytics.logEvent(.connect, params: [
-            "ip_address": currentServer.ipAddress
-        ])
-        VPNManager.shared().openVPNconfigure(currentServer.ipAddress, data: decodedData)
+        // Inspect OVPN for required credentials
+        let ovpnText = String(data: decodedData, encoding: .utf8) ?? ""
+        let needsUserPass = ovpnText.contains("auth-user-pass")
+        let needsKeyPass = ovpnText.contains("ENCRYPTED PRIVATE KEY")
+
+        func connectWith(username: String?, password: String?, keyPass: String?) {
+            WitVPNVPNAnalytics.logEvent(.connect, params: [
+                "ip_address": currentServer.ipAddress
+            ])
+            VPNManager.shared().openVPNconfigure(currentServer.ipAddress,
+                                                 data: decodedData,
+                                                 username: username,
+                                                 password: password,
+                                                 keyPassphrase: keyPass)
+        }
+
+        // Try to use stored credentials if present
+        var savedUser: String? = KeychainHelper.shared.getString("vpn.username")
+        var savedPass: String? = KeychainHelper.shared.getString("vpn.password")
+        var savedKeyPass: String? = KeychainHelper.shared.getString("vpn.keypass")
+
+        if !needsUserPass { savedUser = nil; savedPass = nil }
+        if !needsKeyPass { savedKeyPass = nil }
+
+        if (needsUserPass && (savedUser == nil || savedPass == nil)) || (needsKeyPass && savedKeyPass == nil) {
+            // Prompt the user for missing fields
+            let alert = UIAlertController(title: "VPN Credentials", message: nil, preferredStyle: .alert)
+            if needsUserPass {
+                alert.addTextField { tf in tf.placeholder = "Username"; tf.text = savedUser }
+                alert.addTextField { tf in tf.placeholder = "Password"; tf.isSecureTextEntry = true; tf.text = savedPass }
+            }
+            if needsKeyPass {
+                alert.addTextField { tf in tf.placeholder = "Private key passphrase"; tf.isSecureTextEntry = true; tf.text = savedKeyPass }
+            }
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "Connect", style: .default, handler: { _ in
+                var username: String? = savedUser
+                var password: String? = savedPass
+                var keyPass: String? = savedKeyPass
+                var tfIndex = 0
+                if needsUserPass {
+                    username = alert.textFields?[tfIndex].text; tfIndex += 1
+                    password = alert.textFields?[tfIndex].text; tfIndex += 1
+                    if let u = username { KeychainHelper.shared.setString(u, for: "vpn.username") }
+                    if let p = password { KeychainHelper.shared.setString(p, for: "vpn.password") }
+                }
+                if needsKeyPass {
+                    keyPass = alert.textFields?[tfIndex].text
+                    if let k = keyPass { KeychainHelper.shared.setString(k, for: "vpn.keypass") }
+                }
+                connectWith(username: username, password: password, keyPass: keyPass)
+            }))
+            self.present(alert, animated: true)
+            return
+        }
+        connectWith(username: savedUser, password: savedPass, keyPass: savedKeyPass)
     }
 }
 

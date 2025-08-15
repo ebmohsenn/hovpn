@@ -44,12 +44,23 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
             fatalError()
         }
 
-        let configuration = OpenVPNConfiguration()
+    let configuration = OpenVPNConfiguration()
         configuration.fileContent = ovpnFileContent
 
 
         // Uncomment this line if you want to keep TUN interface active during pauses or reconnections
         // configuration.tunPersist = true
+
+        // If credentials were provided by the container app, attach them
+        if let username = providerConfiguration["username"] as? String,
+           let password = providerConfiguration["password"] as? String,
+           !username.isEmpty {
+            configuration.username = username
+            configuration.password = password
+        }
+        if let pkiPass = providerConfiguration["pkiPassphrase"] as? String, !pkiPass.isEmpty {
+            configuration.privateKeyPassword = pkiPass
+        }
 
         // Apply OpenVPN configuration
         let evaluation: OpenVPNConfigurationEvaluation

@@ -108,7 +108,7 @@ class WitWork: NSObject {
         guard let data = snapshot?.data(),
            let traffic = data["traffic"] as? [String: Any],
            let download = traffic["download"] as? UInt64,
-           let upload = traffic["download"] as? UInt64  else { return }
+           let upload = traffic["upload"] as? UInt64  else { return }
         self.upload = upload
         self.download = download
     }
